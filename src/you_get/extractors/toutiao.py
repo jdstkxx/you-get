@@ -63,8 +63,8 @@ def get_file_by_vid(video_id):
 
 def toutiao_download(url, output_dir='.', merge=True, info_only=False, **kwargs):
     html = get_html(url, faker=True)
-    video_id = match1(html, r"videoid\s*:\s*'([^']+)',\n")
-    title = match1(html, r"title: '([^']+)'.replace")
+    video_id = match1(html, r"videoId\s*:\s*'([^']+)',\n")
+    title = match1(html, r"title: '([^']+)',")
     video_file_list = get_file_by_vid(video_id)  # 调api获取视频源文件
     type, ext, size = url_info(video_file_list[0].url, faker=True)
     print_info(site_info=site_info, title=title, type=type, size=size)
